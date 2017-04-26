@@ -4,17 +4,36 @@
 
 <nav>
 
-    <a class="homeLink" href="">
-        <img src="img/homeInactive.png" alt="Home Link">
-        <p>tribune</p>
+
+    <a class="homeLink" href="index.php">
+        <?php if($page == "index"):?>
+            <img src="img/homeActive.png" alt="Home Link">
+            <p class="red">tribune</p>
+        <?php else: ?>
+            <img src="img/homeInactive.png" alt="Home Link">
+            <p>tribune</p>
+        <?php endif;?>
     </a>
-    <a class="offerLink" href="">
-        <img src="img/offerInactive.png" alt="Tribune link">
-        <p>aanbiedingen</p>
+
+    <a class="offerLink" href="offers.php">
+        <?php if($page == "offers"):?>
+            <img src="img/offerActive.png" alt="Tribune link">
+            <p class="red">aanbiedingen</p>
+        <?php else: ?>
+            <img src="img/offerInactive.png" alt="Tribune link">
+            <p>aanbiedingen</p>
+        <?php endif;?>
+
     </a>
-    <a class="profileLink" href="">
-        <img src="img/profileInactive.png" alt="Profiel link">
-        <p>profiel</p>
+    <a class="profileLink" href="profile.php">
+        <?php if($page == "profile"):?>
+            <img src="img/profileActive.png" alt="Profiel link">
+            <p class="red">profiel</p>
+        <?php else: ?>
+            <img src="img/profileInactive.png" alt="Profiel link">
+            <p>profiel</p>
+        <?php endif;?>
+
     </a>
     <a class="walletLink" href="">
         <div>
