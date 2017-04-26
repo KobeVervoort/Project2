@@ -1,6 +1,6 @@
 <?php
 
-$page = "tribune";
+    $page = 'aanbiedingen';
 
 ?><!doctype html>
 <html lang="en">
@@ -12,10 +12,10 @@ $page = "tribune";
     <link rel="stylesheet" href="css/reset.css">
     <link href="https://fonts.googleapis.com/css?family=Overpass:400,600" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css">
-    <title>home</title>
+    <title>Aanbiedingen</title>
 </head>
 <body>
     <?php include_once 'header.inc.php';?>
-    <?php include_once 'nav.inc.php';?>
+    <?php include_once 'nav.inc.php'?>
 </body>
 </html>
