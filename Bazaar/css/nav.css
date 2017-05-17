@@ -11,6 +11,7 @@ header
     position: fixed;
     top: 0;
     text-align: center;
+    background-color: white;
 }
 
 h1
@@ -30,7 +31,6 @@ nav
     bottom: 0;
     font-family: Overpass, 'sans-serif';
     box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
-
 }
 
 nav a
