@@ -1,34 +1,37 @@
 <?php
 use \Bazaar\Classes\User;
-use \Bazaar\Classes\Vendor;
+use \Bazaar\Classes\Company;
 
 include_once 'start.php';
 
 $page = 'login';
 
 if(!empty($_POST)){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if($_POST['btnSubmit'] == 1){
+
+    if(!empty($_POST['firstname'])){
+
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
         $user = new User();
         $user->setEmail($email);
         $user->setPassword($password);
         $user->setFirstname($firstname);
         $user->setLastname($lastname);
+
+        $user->register();
+
+        $userID = $user->login();
+
+        session_start();
+
+        $_SESSION['userID'] = $userID;
+
+        header('Location: ../index.php');
+
     } else {
-        $vendor = new Vendor();
-        $firstname = $_POST['firstnameBusiness'];
-        $lastname = $_POST['lastnameBusiness'];
-        $companyname = $_POST['companyname'];
-        $vat = $_POST['vat'];
-        $address = $_POST['address'];
-        $city = $_POST['city'];
-        $vendor->setEmail($email);
-        $vendor->setPassword($password);
-        $vendor->setCompanyname($companyname);
-        $vendor->setVatNumber($vat);
+
     }
 }
 
@@ -46,96 +49,119 @@ if(!empty($_POST)){
 </head>
 <body>
 
+    <section class="background">
+
+    </section>
+
     <section class="register">
 
-        <form action="">
+        <div id="blur">
 
-            <fieldset class="firstStep">
+            <div id="darkOverlay">
 
-                <h1>maak een profiel aan</h1>
+                <img src="img/logo.png" alt="" class="logo">
 
-                <label for="email">email</label>
-                <input type="email" id="email" placeholder="email" autocomplete="new email" name="email">
+                <div id="buttonContainer">
 
-                <label for="password">wachtwoord</label>
-                <input type="password" id="password" placeholder="wachtwoord" autocomplete="new-password" name="password">
+                    <form action="" method="post">
 
-                <label for="confirmPassword">bevestig wachtwoord</label>
-                <input type="password" id="confirmPassword" placeholder="bevestig wachtwoord" autocomplete="new-password" name="confirmPassword">
+                        <fieldset class="loginOrRegister">
 
-                <button id="next">volgende</button>
+                            <button class="buttonTop" id="register">Registreer</button>
 
-            </fieldset>
+                            <button class="buttonBottom" id="login">Login</button>
 
-            <fieldset class="secondStep">
+                        </fieldset>
 
-                <h1>ga verder als supporter of als handelaar</h1>
+                        <fieldset class="firstStep">
 
-                <button id="buttonFan">supporter</button>
+                            <button class="back" id="backOne"></button>
 
-                <button id="buttonBusiness">handelaar</button>
+                            <h1 id="fanOrBusiness">ga verder als supporter of als handelaar</h1>
 
-                <button id="previous">vorige</button>
+                            <button id="buttonFan" class="buttonTop">supporter</button>
 
-            </fieldset>
+                            <button id="buttonBusiness" class="buttonBottom">handelaar</button>
 
-            <fieldset class="fanStep">
+                        </fieldset>
 
-                <label for="firstname">voornaam</label>
-                <input type="text" id="firstname" name="firstname" placeholder="voornaam">
+                        <fieldset class="fanStep">
 
-                <label for="lastname">naam</label>
-                <input type="text" id="lastname" name="lastname" placeholder="naam">
+                            <button class="back" id="backTwo"></button>
 
-                <button type="submit" id="submitFan" value="1" name="btnSubmit">voltooi</button>
+                            <h1>maak een profiel aan</h1>
 
-                <button id="previousTwo">vorige</button>
+                            <label for="email">email</label>
+                            <input type="email" id="email" placeholder="email" name="email">
+                            <p class="errorMessage" id="errorMailFan"></p>
 
-            </fieldset>
+                            <label for="password">wachtwoord</label>
+                            <input type="password" id="password" placeholder="wachtwoord" name="password">
+                            <p class="errorMessage" id="errorPasswordFan"></p>
 
-            <fieldset class="businessStep">
+                            <label for="confirmPassword">bevestig wachtwoord</label>
+                            <input type="password" id="confirmPassword" placeholder="bevestig wachtwoord" name="confirmPassword">
+                            <p class="errorMessage" id="errorConfirmPasswordFan"></p>
 
-                <label for="firstnameBusiness">voornaam</label>
-                <input type="text" id="firstnameBusiness" name="firstnameBusiness" placeholder="voornaam">
+                            <button id="next" class="buttonTop">volgende</button>
 
-                <label for="lastnameBusiness">naam</label>
-                <input type="text" id="lastnameBusiness" name="lastnameBusiness" placeholder="naam">
+                        </fieldset>
 
-                <label for="companyname">bedrijfsnaam</label>
-                <input type="text" id="companyname" name="companyname" placeholder="bedrijfsnaam">
+                        <fieldset class="fanStepTwo">
 
-                <label for="vat">BTW-nummer</label>
-                <input type="number" id="vat" name="vat" placeholder="BTW-nummer">
+                            <button class="back" id="backThree"></button>
 
-                <button id="nextTwo">volgende</button>
+                            <h1>bijna klaar</h1>
 
-                <button id="previousThree">vorige</button>
+                            <label for="firstname">voornaam</label>
+                            <input type="text" id="firstname" name="firstname" placeholder="voornaam">
+                            <p class="errorMessage" id="errorFirstname"></p>
 
-            </fieldset>
+                            <label for="lastname">naam</label>
+                            <input type="text" id="lastname" name="lastname" placeholder="naam">
+                            <p class="errorMessage" id="errorLastname"></p>
 
-            <fieldset class="businessStepTwo">
+                            <button type="submit" id="fanSubmit" name="fanSubmit" class="buttonTop">voltooi</button>
 
-                <label for="address">adres</label>
-                <input type="text" id="address" name="address" placeholder="adres">
+                        </fieldset>
 
-                <legend >deelgemeente</legend>
+                        <fieldset class="businessStep">
 
-                <select name="city" id="city">
-                    <option value="mechelen">mechelen</option>
-                    <option value="heffen">heffen</option>
-                    <option value="hombeek">hombeek</option>
-                    <option value="leest">leest</option>
-                    <option value="muizen">muizen</option>
-                    <option value="walem">walem</option>
-                </select>
+                            <label for="companyname">bedrijfsnaam</label>
+                            <input type="text" id="companyname" name="companyname" placeholder="bedrijfsnaam">
 
-                <button type="submit" id="submitBusiness" value="2" name="btnSubmit">voltooi</button>
+                            <label for="address">adres</label>
+                            <input type="text" id="address" name="address" placeholder="adres">
 
-                <button id="previousFour">vorige</button>
+                            <legend >deelgemeente</legend>
 
-            </fieldset>
+                            <p>deelgemeente</p>
+                            <select name="city" id="city" >
+                                <option disabled selected value="1">Maak een keuze</option>
+                                <option value="2">Mechelen</option>
+                                <option value="3">Heffen</option>
+                                <option value="4">Hombeek</option>
+                                <option value="5">Leest</option>
+                                <option value="6">Muizen</option>
+                                <option value="7">Walem</option>
+                            </select>
 
-        </form>
+                            <label for="vat">BTW-nummer</label>
+                            <input type="number" id="vat" name="vat" placeholder="BTW-nummer">
+
+                            <button id="submitBusiness" value="2" name="companySubmit">voltooi</button>
+
+                            <button id="previousThree">vorige</button>
+
+                        </fieldset>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 
