@@ -3,7 +3,14 @@ use \Bazaar\Classes\User;
 
 include_once 'Bazaar/start.php';
 
+session_start();
 $page = "tribune";
+
+if(isset($_SESSION['userID'])){
+
+} else {
+    header('Location: Bazaar/register.php');
+}
 
 ?><!doctype html>
 <html lang="en">
