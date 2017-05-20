@@ -3,38 +3,118 @@
     box-sizing: border-box;
 }
 
-form
+body
 {
-    width: 85%;
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Montserrat, sans-serif;
+    overflow: hidden;
 }
 
-form input
+.background
+{
+    background-image: url('../img/stadium.jpg');
+    background-size: cover;
+    background-position: -200px 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+}
+
+@keyframes blurBackground {
+    from {filter: blur(0);}
+    to {filter: blur(15px);}
+}
+
+@keyframes deBlurBackground
+{
+    from {filter: blur(15px);}
+    to {filter: blur(0);}
+}
+
+.blur
+{
+    animation-name: blurBackground;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+
+.deBlur
+{
+    animation-name: deBlurBackground;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+}
+
+fieldset
+{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    padding: 0 7.5%;
+}
+
+#darkOverlay
+{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#blur
+{
+    width: 100%;
+    height: 100%;
+}
+
+#buttonContainer
+{
+    height: 200px;
+    width: 100%;
+    background-color: rgba(233, 79, 76, 0.8);
+    position: fixed;
+    bottom: 0;
+}
+
+form
+{
+    font-family: Montserrat, sans-serif;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+
+form input,
+#city
 {
     border: none;
-    border-bottom: 1px solid #b7b7b7;
+    border-bottom: 1px solid white;
     width: 100%;
-    margin: 5px 0 20px 0;
+    margin: 5px 0 0 0;
     font-size: 1.2em;
     padding: 0;
     padding-bottom: 5px;
     border-radius: 0;
-    font-weight: 200;
     outline: 0;
+    background-color: transparent;
+    color: white;
+    font-weight: 400;
 }
 
 form input::-webkit-input-placeholder
 {
-    color: #b7b7b7;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
 }
 
 form input:-moz-placeholder
 {
-    color: #b7b7b7;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
 }
 
 form input:focus::-webkit-input-placeholder
@@ -52,68 +132,133 @@ form label
     font-size: 0.8em;
     position: relative;
     top: 25px;
-    color: #b7b7b7;
+    color: white;
     opacity: 0;
     pointer-events: none;
     text-transform: uppercase;
 }
 
-button
+p
 {
-    height: 60px;
-    display: block;
-    width: 100%;
-    background: linear-gradient(90deg, #ff5f6d, #ffc371);
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(179,179,179,1);
-    font-family: Montserrat, sans-serif;
-    font-size: 1.6em;
-    font-weight: 600;
-    text-align: center;
-    text-transform: uppercase;
-    color: white;
-    margin-top: 20px;
+    height: 1px;
+    margin: 10px 0 30px 0;
 }
 
-a
+.error
 {
-    height: 60px;
-    width: 85%;
+    border-bottom: 1px solid #ff8888;
+}
+
+.error::-webkit-input-placeholder
+{
+    color: #ff8888;
+}
+
+.errorMessage
+{
+    font-size: 0.8em;
+    color: #ff8888;
+}
+
+button
+{
+    height: 50px;
     display: block;
-    margin: auto;
-    background: linear-gradient(90deg, #ff5f6d, #ffc371);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px 0 rgba(179,179,179,1);
+    width: 85%;
+    background: white;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
     font-family: Montserrat, sans-serif;
     font-size: 1.6em;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    text-decoration: none;
-    color: white;
-    padding-top: 18px;
+    color: #e94f4c;
+}
+
+.logo
+{
+    display: block;
+    width: 40%;
+    position: fixed;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-fieldset
+.buttonTop
 {
     position: absolute;
-    top: -400px;
-    width: 100%;
+    bottom: 115px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.secondStep,
+.buttonBottom
+{
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#next,
+#fanSubmit
+{
+    bottom: 80px;
+}
+
+.back
+{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: url("../img/arrow.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .fanStep,
+.fanStepTwo,
 .businessStep,
-.businessStepTwo
+.firstStep
 {
     left: 250px;
     opacity: 0;
 }
 
+h1
+{
+    font-weight: 800;
+    color: white;
+    font-size: 1.7em;
+    text-align: center;
+    line-height: 1.2em;
+    width: 85%;
+    text-transform: uppercase;
+    margin: 15px auto 30px auto;
+}
+
+.fanStepTwo h1
+{
+    margin-bottom: 100px;
+}
+
+#fanOrBusiness
+{
+    margin-top: 100px;
+    width: 100%;
+}
+
+
+
 #city
 {
     -webkit-appearance: none;
+    opacity: 1;
 }

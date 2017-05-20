@@ -98,24 +98,33 @@ class User
     {
         $conn = Db::getInstance();
 
-        if (!$this->userExists()){
-            $options = [
-                'cost' => 12
-            ];
+        $options = [
+            'cost' => 12
+        ];
 
-            $hashedpassword = password_hash($this->getPassword(), PASSWORD_DEFAULT, $options);
-            $statement = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (:firstname, :lastname, :email, :password)");
-            $statement->bindValue(':firstname', $this->getFirstname());
-            $statement->bindValue(':lastname', $this->getLastname());
-            $statement->bindValue(':email', $this->getEmail());
-            $statement->bindValue(':password', $hashedpassword);
+        $hashedpassword = password_hash($this->getPassword(), PASSWORD_DEFAULT, $options);
+        $statement = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (:firstname, :lastname, :email, :password)");
+        $statement->bindValue(':firstname', $this->getFirstname());
+        $statement->bindValue(':lastname', $this->getLastname());
+        $statement->bindValue(':email', $this->getEmail());
+        $statement->bindValue(':password', $hashedpassword);
 
-            $statement->execute();
-        } else {
-            throw new \Exception('This ');
-        }
+        $statement->execute();
     }
 
+    public function login()
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT id FROM users where email = :email');
+        $statement->bindValue(':email', $this->getEmail(), $conn::PARAM_STR);
+        $statement->execute();
+
+        $res = $statement->fetch();
+        $userid = $res['id'];
+
+        return $userid;
+    }
 }
 
 
