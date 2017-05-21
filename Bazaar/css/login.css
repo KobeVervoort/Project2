@@ -204,7 +204,10 @@ button
 }
 
 #next,
-#fanSubmit
+#fanSubmit,
+#submitLogin,
+#nextTwo,
+#submitCompany
 {
     bottom: 80px;
 }
@@ -225,8 +228,10 @@ button
 
 .fanStep,
 .fanStepTwo,
-.businessStep,
-.firstStep
+.companyStep,
+.companyStepTwo,
+.firstStep,
+.login
 {
     left: 250px;
     opacity: 0;
@@ -244,7 +249,27 @@ h1
     margin: 15px auto 30px auto;
 }
 
-.fanStepTwo h1
+.cityLabel
+{
+    font-size: 0.8em;
+    position: relative;
+    top: 25px;
+    color: white;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+
+#city
+{
+    margin-top: 10px;
+    background-image: url("../img/arrowDown.png");
+    background-size: 5%;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.fanStepTwo h1,
+.login h1
 {
     margin-bottom: 100px;
 }
@@ -254,8 +279,6 @@ h1
     margin-top: 100px;
     width: 100%;
 }
-
-
 
 #city
 {
