@@ -8,6 +8,8 @@ $page = "tribune";
 
 if(isset($_SESSION['userID'])){
 
+} else if (isset($_SESSION['companyID'])){
+
 } else {
     header('Location: Bazaar/register.php');
 }

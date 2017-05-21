@@ -30,9 +30,72 @@ if(!empty($_POST)){
 
         header('Location: ../index.php');
 
-    } else {
+    } else if(!empty($_POST['emailLogin'])) {
 
+        $email = $_POST['emailLogin'];
+        $password = $_POST['passwordLogin'];
+
+        $user = new User();
+
+        $user->setEmail($email);
+        $user->setPassword($password);
+
+        if ($user->login() == null){
+
+            $company = new Company();
+            $company->setEmail($email);
+            $company->setPassword($password);
+
+            $companyID = $company->loginCompany();
+
+            session_start();
+
+            $_SESSION['companyID'] = $companyID;
+            header('Location: ../index.php');
+
+        } else {
+            $userID = $user->login();
+
+            session_start();
+
+            $_SESSION['userID'] = $userID;
+            header('Location: ../index.php');
+        }
+
+        var_dump($userID);
+
+
+
+    } else if(!empty($_POST['address'])){
+
+        $companyname = $_POST['companyname'];
+        $email = $_POST['emailCompany'];
+        $password = $_POST['passwordCompany'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+
+        $company = new Company();
+
+        $company->setCompanyname($companyname);
+        $company->setEmail($email);
+        $company->setPassword($password);
+        $company->setAddress($address);
+        $company->setCity($city);
+
+        $company->registerCompany();
+
+        $companyID = $company->loginCompany();
+
+        session_start();
+
+        $_SESSION['companyID'] = $companyID;
+
+        header('Location: ../index.php');
+
+    } else {
+        $error = 'Deze combinatie van email en wachtwoord bestaat niet';
     }
+
 }
 
 ?><!doctype html>
@@ -125,33 +188,73 @@ if(!empty($_POST)){
 
                         </fieldset>
 
-                        <fieldset class="businessStep">
+                        <fieldset class="companyStep">
+
+                            <button class="back" id="backFour"></button>
+
+                            <h1>maak een profiel aan</h1>
+
+                            <label for="emailCompany">email</label>
+                            <input type="email" id="emailCompany" placeholder="email" name="emailCompany">
+                            <p class="errorMessage" id="errorMailCompany"></p>
+
+                            <label for="passwordCompany">wachtwoord</label>
+                            <input type="password" id="passwordCompany" placeholder="wachtwoord" name="passwordCompany">
+                            <p class="errorMessage" id="errorPasswordCompany"></p>
+
+                            <label for="confirmPasswordCompany">bevestig wachtwoord</label>
+                            <input type="password" id="confirmPasswordCompany" placeholder="bevestig wachtwoord" name="confirmPasswordCompany">
+                            <p class="errorMessage" id="errorConfirmPasswordCompany"></p>
+
+                            <button id="nextTwo" class="buttonTop">volgende</button>
+
+                        </fieldset>
+
+                        <fieldset class="companyStepTwo">
+
+                            <h1>bijna klaar</h1>
+
+                            <button class="back" id="backFive"></button>
 
                             <label for="companyname">bedrijfsnaam</label>
                             <input type="text" id="companyname" name="companyname" placeholder="bedrijfsnaam">
+                            <p class="errorMessage" id="errorCompanyname"></p>
 
                             <label for="address">adres</label>
                             <input type="text" id="address" name="address" placeholder="adres">
+                            <p class="errorMessage" id="errorAddress"></p>
 
-                            <legend >deelgemeente</legend>
-
-                            <p>deelgemeente</p>
+                            <p class="cityLabel">kies een deelgemeente</p>
                             <select name="city" id="city" >
-                                <option disabled selected value="1">Maak een keuze</option>
-                                <option value="2">Mechelen</option>
-                                <option value="3">Heffen</option>
-                                <option value="4">Hombeek</option>
-                                <option value="5">Leest</option>
-                                <option value="6">Muizen</option>
-                                <option value="7">Walem</option>
+                                <option disabled selected value="1">kies</option>
+                                <option value="Mechelen">Mechelen</option>
+                                <option value="Heffen">Heffen</option>
+                                <option value="Hombeek">Hombeek</option>
+                                <option value="Leest">Leest</option>
+                                <option value="Muizen">Muizen</option>
+                                <option value="Walem">Walem</option>
                             </select>
+                            <p class="errorMessage" id="errorCity"></p>
 
-                            <label for="vat">BTW-nummer</label>
-                            <input type="number" id="vat" name="vat" placeholder="BTW-nummer">
+                            <button id="submitCompany" value="2" name="companySubmit" class="buttonTop">voltooi</button>
 
-                            <button id="submitBusiness" value="2" name="companySubmit">voltooi</button>
+                        </fieldset>
 
-                            <button id="previousThree">vorige</button>
+                        <fieldset class="login">
+
+                            <button class="back" id="backSix"></button>
+
+                            <h1>Login met je e&#x2011;mailadres en wachtwoord</h1>
+
+                            <label for="emailLogin">email</label>
+                            <input type="email" id="emailLogin" name="emailLogin" placeholder="email">
+                            <p class="errorMessage" id="errorEmailLogin"></p>
+
+                            <label for="passwordLogin">wachtwoord</label>
+                            <input type="password" id="passwordLogin" name="passwordLogin" placeholder="wachtwoord">
+                            <p class="errorMessage" id="errorPasswordLogin"></p>
+
+                            <button id="submitLogin" type="submit" class="buttonTop">Login</button>
 
                         </fieldset>
 

@@ -11,29 +11,31 @@ if(!empty($_POST)){
 
     $user = new User();
     $user->setEmail($_POST['email']);
+    $user->setPassword($_POST['password']);
 
-    if(!$user->userExists()){
+    if($user->canLogin()){
+        $feedback = [
+            'code' => 200,
+            'canLogin' => true
+        ];
+    } else {
 
         $company = new Company();
         $company->setEmail($_POST['email']);
+        $company->setPassword($_POST['password']);
 
-        if(!$company->companyExists()) {
+        if($company->canLoginCompany()){
             $feedback = [
                 'code' => 200,
-                'userExists' => false
+                'canLogin' => true
             ];
         } else {
             $feedback = [
                 'code' => 200,
-                'userExists' => true
+                'canLogin' => false
             ];
         }
-    } else {
 
-            $feedback = [
-                'code' => 200,
-                'userExists' => true
-            ];
 
     }
 

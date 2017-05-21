@@ -34,6 +34,9 @@ $(document).ready(function(){
     var fieldsetFirst = $('.firstStep');
     var fieldsetFan = $('.fanStep');
     var fieldsetFanTwo = $('.fanStepTwo');
+    var fieldsetLogin = $('.login');
+    var fieldsetCompany = $('.companyStep');
+    var fieldsetCompanyTwo = $('.companyStepTwo');
 
     var emailFan = $('#email');
     var passwordFan = $('#password');
@@ -243,6 +246,266 @@ $(document).ready(function(){
 
     // Handling of company form
 
+    $('#buttonBusiness').on('click', function (e) {
+        e.preventDefault();
+        next(fieldsetCompany, fieldsetFirst)
+    });
+
+    $('#backFour').on('click', function (e) {
+        e.preventDefault();
+        previous(fieldsetFirst, fieldsetCompany)
+    });
+
+    var emailCompany = $('#emailCompany');
+    var passwordCompany = $('#passwordCompany');
+    var passwordConfirmCompany = $('#confirmPasswordCompany');
+
+    $('#nextTwo').on('click', function (e) {
+        var emailPass = false;
+        var passwordPass = false;
+        var errorEmail = $('#errorMailCompany');
+        var labelEmail = $("label[for='emailCompany']");
+        var labelPassword = $("label[for='passwordCompany']");
+        var labelPasswordConfirm = $("label[for='confirmPasswordCompany']");
+        var errorPassword = $('#errorPasswordCompany');
+        var errorPasswordConfirm = $('#errorConfirmPasswordCompany');
+
+        e.preventDefault();
+        if(emailCompany.val() == ''){
+
+            emailCompany.addClass('error');
+            errorEmail.text('je kan dit niet leeg laten');
+            labelEmail.css({color: '#ff8888'});
+
+        } else if (emailCompany.val().indexOf('@') == -1){
+
+            emailCompany.addClass('error');
+            errorEmail.text('dit is een ongeldig emailadres')
+            labelEmail.css({color: '#ff8888'});
+
+        } else {
+
+            var email = {
+                email: emailCompany.val()
+            };
+
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/userExists.php',
+                data: email,
+                async:false
+            }).done(function (response) {
+                if(response.userExists) {
+                    emailCompany.addClass('error');
+                    errorEmail.text('dit e-mailadres is al in gebruik');
+                    labelEmail.css({color: '#ff8888'});
+                    emailPass = false;
+                } else {
+                    emailPass = true;
+                    emailCompany.removeClass('error');
+                    labelEmail.css({color: 'white'});
+                    errorEmail.text('');
+                }
+            });
+        }
+
+        if(passwordCompany.val() == ''){
+            passwordCompany.addClass('error');
+            errorPassword.text('je kan dit niet leeg laten');
+            labelPassword.css({color: '#ff8888'});
+        } else {
+            passwordCompany.removeClass('error');
+            errorPassword.text('');
+            labelPassword.css({color: 'white'});
+        }
+
+        if(passwordConfirmCompany.val() == ''){
+            passwordConfirmCompany.addClass('error');
+            errorPasswordConfirm.text('je kan dit niet leeg laten');
+            labelPasswordConfirm.css({color: '#ff8888'});
+        } else {
+            passwordConfirmCompany.removeClass('error');
+            errorPasswordConfirm.text('');
+            labelPasswordConfirm.css({color: 'white'});
+        }
+
+        if(passwordCompany.val() == passwordConfirmCompany.val() && passwordConfirmCompany.val() != ''){
+            passwordConfirmCompany.removeClass('error');
+            errorPasswordConfirm.text('');
+            labelPasswordConfirm.css({color: 'white'});
+            passwordPass = true;
+        } else {
+            passwordConfirmCompany.addClass('error');
+            errorPasswordConfirm.text('deze wachtwoorden komen niet overeen');
+            labelPasswordConfirm.css({color: '#ff8888'});
+        }
+
+        if(emailPass && passwordPass){
+            next(fieldsetCompanyTwo, fieldsetCompany);
+        } else {
+            console.log('error');
+        }
+
+    });
+
+    $('#backFive').on('click', function (e) {
+        e.preventDefault();
+        previous(fieldsetCompany, fieldsetCompanyTwo);
+    });
+
+    // Handling of Login
+
+    $('#login').on('click', function (e) {
+        e.preventDefault();
+        next(fieldsetLogin, fieldsetLoginOrRegister);
+        logo.animate({
+            opacity: 0,
+            left: '30%'
+        });
+        background.removeClass("deBlur");
+        background.addClass("blur");
+    });
+
+    $('#backSix').on('click', function (e) {
+        e.preventDefault();
+        previous(fieldsetLoginOrRegister, fieldsetLogin);
+        logo.delay(300).animate({
+            opacity: 1,
+            left: '50%'
+        });
+        background.removeClass("blur");
+        background.addClass("deBlur");
+    });
+
+    $('#submitCompany').on('click', function (e) {
+        e.preventDefault();
+
+        var companyname = $('#companyname');
+        var address = $('#address');
+        var city = $('#city');
+
+        var companynameLabel = $("label[for='companyname']");
+        var addressLabel = $("label[for='address']");
+        var cityLabel = $('.cityLabel');
+
+        var errorCompanyname = $('#errorCompanyname');
+        var errorAddress = $('#errorAddress');
+        var errorCity = $('#errorCity');
+
+        var companynamePass = false;
+        var addressPass = false;
+        var cityPass = false;
+
+        if(companyname.val() == ''){
+            companyname.addClass('error');
+            errorCompanyname.text('je kan dit niet leeg laten');
+            companynameLabel.css({color: '#ff8888'});
+        } else {
+            companyname.removeClass('error');
+            errorCompanyname.text('');
+            companynameLabel.css({color: 'white'});
+            companynamePass = true;
+        }
+
+        if(address.val() == ''){
+            address.addClass('error');
+            errorAddress.text('je kan dit niet leeg laten');
+            addressLabel.css({color: '#ff8888'});
+        } else {
+            address.removeClass('error');
+            errorAddress.text('');
+            addressLabel.css({color: 'white'});
+            addressPass = true;
+        }
+
+        if(city.val() == null){
+            city.addClass('error');
+            errorCity.text('maak een keuze');
+            cityLabel.css({color: '#ff8888'});
+        } else {
+            city.removeClass('error');
+            errorCity.text('');
+            cityPass = true;
+            cityLabel.css({color: 'white'});
+        }
+
+        if(companynamePass && addressPass && cityPass){
+            form.submit();
+        } else {
+            console.log('error at company registration');
+        }
+
+    });
+
+    $('#submitLogin').on('click', function (e) {
+        e.preventDefault();
+
+        var email = $('#emailLogin');
+        var password = $('#passwordLogin');
+
+        var errorEmail = $('#errorEmailLogin');
+        var errorPassword = $('#errorPasswordLogin');
+
+        var labelEmail = $("label[for='emailLogin']");
+        var labelPassword = $("label[for='passwordLogin']");
+
+        var emailPass = false;
+        var passwordPass = false;
+
+        if(email.val()==''){
+            email.addClass('error');
+            errorEmail.text('Je kan dit niet leeg laten');
+            labelEmail.css({color: '#ff8888'});
+        } else if(email.val().indexOf('@') == -1){
+            email.addClass('error');
+            errorEmail.text('dit is een ongeldig emailadres');
+            labelEmail.css({color: '#ff8888'});
+        } else {
+            email.removeClass('error');
+            errorEmail.text('');
+            labelEmail.css({color: 'white'});
+            emailPass = true
+        }
+
+        if(password.val()==''){
+            password.addClass('error');
+            errorPassword.text('Je kan dit niet leeg laten');
+            labelPassword.css({color: '#ff8888'});
+        } else {
+            password.removeClass('error');
+            errorPassword.text('');
+            labelPassword.css({color: 'white'});
+            passwordPass = true;
+        }
+
+        if(emailPass && passwordPass){
+
+            var loginData = {
+                email: email.val(),
+                password: password.val()
+            };
+
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/userLogin.php',
+                data: loginData,
+                async:false
+            }).done(function (response) {
+                if(response.canLogin){
+                    form.submit();
+                } else {
+                    email.addClass('error');
+                    labelEmail.css({color: '#ff8888'});
+                    password.addClass('error');
+                    errorPassword.text('Deze combinatie van email en wachtwoord bestaat niet');
+                    labelPassword.css({color: '#ff8888'});
+                }
+            });
+
+        } else {
+            console.log('error at login');
+        }
+    })
 });
 
 

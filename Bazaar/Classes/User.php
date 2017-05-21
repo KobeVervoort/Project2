@@ -125,6 +125,32 @@ class User
 
         return $userid;
     }
+
+    public function canLogin()
+    {
+        // connection with database
+        $conn = Db::getInstance();
+
+        //get user & password from database
+        $statement = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $statement->bindValue(':email', $this->getEmail());
+        $statement->execute();
+
+        if ($statement->rowCount()== 1) {
+            $row = $statement->fetch();
+
+            if (password_verify($this->getPassword(), $row['password'])) {
+                return true;
+            } else {
+                // no match with password
+                return false;
+            }
+        } else {
+            // email not found
+            return false;
+        }
+    }
+
 }
 
 
