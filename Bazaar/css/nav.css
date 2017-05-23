@@ -3,25 +3,6 @@
     box-sizing: border-box;
 }
 
-header
-{
-    height: 50px;
-    width: 100%;
-    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    text-align: center;
-    background-color: white;
-}
-
-h1
-{
-    font-family: Overpass, 'sans-serif';
-    font-size: 1.8em;
-    color: #484848;
-    margin-top: 10px;
-}
-
 nav
 {
     height: 50px;
@@ -29,8 +10,10 @@ nav
     display: flex;
     position: fixed;
     bottom: 0;
-    font-family: Overpass, 'sans-serif';
+    font-family: Montserrat, sans-serif;
     box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    background-color: white;
+    z-index: 10;
 }
 
 nav a
@@ -38,7 +21,7 @@ nav a
     text-decoration: none;
     width: 100%;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: #484848;
 }
 
@@ -48,29 +31,12 @@ nav a img
     margin-top: 5px;
 }
 
-.walletLink
-{
-    position: relative;
-    bottom: 35px;
-}
-
-.walletLink div
-{
-    width: 65px;
-    height: 65px;
-    border-radius: 33px;
-    background-color: #ed4a3e;
-    margin: auto;
-    box-shadow: 0 0 8px rgba(237, 74, 62, 0.8);
-}
-
-.walletLink img
-{
-    margin-top: 16px;
-    height:32px;
-}
-
 .red
 {
     color: #ed4a3e;
+}
+
+nav p
+{
+    margin-top: 2px;
 }
