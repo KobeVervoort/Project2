@@ -1,6 +1,127 @@
+body
+{
+    background-color: #f7f3f1;
+}
+
 .main
 {
-    background-color: red;
-    width: 100%;
+    width: 90%;
     height: 100%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.offers
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.offer
+{
+    width: 48%;
+    background-color: white;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    position: relative;
+    text-decoration: none;
+    font-weight: 400;
+    color: #595959;
+    height: 140px;
+    margin-top: 15px;
+}
+
+.overlay
+{
+    background: -webkit-linear-gradient(left, #ffce00, #f5a127);
+    opacity: 0.7;
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.companyLogo
+{
+    height: 50px;
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    margin-bottom: 25px;
+}
+
+h1
+{
+    font-size: 1.1em;
+    margin: 0 5px;
+}
+
+.price
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #bcbcbc;
+    position: absolute;
+    bottom: 5px;
+    font-size: 1em;
+}
+
+.price img
+{
+    height: 15px;
+    margin: 0 5px 0 0;
+}
+
+.superFans
+{
+    height: 240px;
+    width: 100%;
+    -webkit-clip-path: polygon(100% 0, 100% 54%, 100% 100%, 0 100%, 0 30%);
+    background: linear-gradient(left, #e94f4c, #8e181b);
+    background: -webkit-linear-gradient(left, #e94f4c, #8e181b);
+    opacity: 0.8;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
+
+.allOffers
+{
+    height: 50px;
+    background-color: #e94f4c;
+    border-radius: 25px;
+    border: none;
+    width: 80%;
+    color: white;
+    font-size: 1em;
+    box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    position: absolute;
+    bottom: 190px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.superFansBackground
+{
+    height: 240px;
+    width: 100%;
+    clip-path: polygon(100% 0, 100% 54%, 100% 100%, 0 100%, 0 30%);
+    background-image: url('../img/fans.jpg');
+    background-size: cover;
+    background-position: center -50px;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
 }
