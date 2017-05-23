@@ -7,6 +7,7 @@ class Company extends User
     private $companyname;
     private $address;
     private $city;
+    private $logo;
 
     public function getCompanyname()
     {
@@ -31,6 +32,16 @@ class Company extends User
     public function getCity()
     {
         return $this->city;
+    }
+
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
     }
 
     public function setCity($city)
@@ -104,6 +115,26 @@ class Company extends User
         } else {
             // email not found
             return false;
+
+        }
+    }
+
+    public function getCompanyData($companyID)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM companies WHERE id = :companyID");
+        $statement->bindValue(':companyID', $companyID);
+        $statement->execute();
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        if ($res) {
+            $this->setCompanyname($res['company_name']);
+            $this->setEmail($res['email']);
+            $this->setPassword($res['password']);
+            $this->setAddress($res['address']);
+            $this->setCity($res['city']);
+            $this->setLogo($res['logo']);
+        } else {
 
         }
     }
