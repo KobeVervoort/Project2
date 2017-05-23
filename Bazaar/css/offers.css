@@ -1,0 +1,290 @@
+body
+{
+    background-color: #f7f3f1;
+}
+
+.main
+{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main ul
+{
+    margin-top: 25px;
+    margin-bottom: 75px;
+}
+
+li
+{
+    perspective: 1000px;
+}
+
+.flipper
+{
+    transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    position: relative;
+}
+
+.front,
+.back
+{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    height: 120px;
+    position: relative;
+    margin-bottom: 15px;
+    z-index: -1;
+    -webkit-backface-visibility: hidden;
+}
+
+.front
+{
+    border-radius: 7px;
+    transform: rotateY(0deg);
+}
+
+.offer.flip .flipper
+{
+    transform: rotateY(180deg);
+    height: 315px;
+}
+
+.front .logo img
+{
+    max-height: 90px;
+    max-width: 90px;
+    margin: 0 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.front .overlay
+{
+    background: -webkit-linear-gradient(left, #ffce00, #f5a127);
+    opacity: 0.7;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.front .info
+{
+    margin-left: 130px;
+    padding-top: 8px;
+    padding-right: 10px;
+}
+
+.front .info h1
+{
+    font-size: 1.1em;
+    color: #595959;
+}
+
+.front .dates
+{
+    position: absolute;
+    bottom: 40px;
+}
+
+.front .dates h2
+{
+    font-size: 1em;
+    color: #a0a0a0;
+    font-weight: 200;
+}
+
+.front .dates h2 span
+{
+    color: #595959;
+}
+
+.price
+{
+    position: absolute;
+    bottom: 8px;
+    display: flex;
+    color: #a0a0a0;
+    font-size: 1em;
+    font-weight: 200;
+}
+
+.front .price img
+{
+    height: 15px;
+    margin: 0 5px 0 0;
+}
+
+.more
+{
+    background-color: transparent;
+    border: none;
+    background-image: url("../img/more.png");
+    background-size: 45%;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+    background-position: center center ;
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+}
+
+.back
+{
+    padding: 5px 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -2;
+    transform: rotateY(180deg);
+    height: 300px;
+}
+
+.back h1
+{
+    color: #595959;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.companyInfo
+{
+    height: 100px;
+    background:-webkit-linear-gradient(left, #e94f4c, #8e181b);;
+    opacity: 0.8;
+    display: flex;
+}
+
+.logoContainer
+{
+    background-color: white;
+    border-radius: 8px;
+    height: 75px;
+    width: 75px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    position: relative;
+    left: 15px;
+    top: 12px;
+}
+
+.logoContainer img
+{
+    max-height: 60px;
+    max-width: 60px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.infoContainer
+{
+    position: absolute;
+    left: 100px;
+    top: 40px;
+    color: white;
+}
+
+.infoContainer h2
+{
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.infoContainer p
+{
+    font-size: 0.9em;
+    font-weight: 200;
+}
+
+.offerInfo
+{
+    padding: 15px;
+    display: flex;
+    width: 100%;
+}
+
+.offerInfo h3
+{
+    text-transform: uppercase;
+    color: #595959;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+.offerInfo p
+{
+    color: #a0a0a0;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.1em;
+}
+
+.offerInfo .description
+{
+    width: 150px;
+    flex-grow: 4;
+}
+
+.offerInfo .dates
+{
+    width: 100px;
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.dates p
+{
+    margin-bottom: 10px;
+}
+
+.toOffer
+{
+    height: 40px;
+    background-color: #e94f4c;
+    border-radius: 25px;
+    border: none;
+    width: 80%;
+    color: white;
+    font-size: 1em;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
