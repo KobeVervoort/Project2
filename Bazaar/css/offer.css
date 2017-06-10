@@ -1,0 +1,183 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #f7f3f1;
+}
+
+header
+{
+    height: 180px;
+    background: -webkit-linear-gradient(left, #e94f4c, #8e181b);
+    width: 100%;
+    position: relative;
+}
+
+.logoContainer
+{
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+}
+
+.logoContainer img
+{
+    max-width: 75px;
+    max-height: 75px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header h1
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 25px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+}
+
+.main
+{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main h2
+{
+    text-transform: uppercase;
+    color: #595959;
+    margin-bottom: 5px;
+    font-size: 1em;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.main p
+{
+    color: #a0a0a0;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.description
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.dates
+{
+    display: flex;
+}
+
+.dates div
+{
+    width: 50%;
+}
+
+.coins
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.coinContainer
+{
+    width: 33%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.overlay
+{
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    background: -webkit-linear-gradient(left, #ffce00, #f5a127);
+    opacity: 0.7;
+    position: absolute;
+    z-index: 1;
+}
+
+.coin
+{
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 7px rgba(0,0,0,0.3);
+    position: relative;
+    left: 50%;
+    top: inherit;
+    transform: translateX(-50%);
+}
+
+.coin img
+{
+    height: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
