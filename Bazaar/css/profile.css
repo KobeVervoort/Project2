@@ -1,0 +1,200 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #f7f3f1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profileHeader
+{
+    background: -webkit-linear-gradient(bottom left, #e94f4c, #8e181b);
+    height: 175px;
+    padding-top: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.defaultProfile,
+.profilePic
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+}
+
+.defaultProfile
+{
+    background-color: white;
+    color: #bcbcbc;
+    font-size: 2.7em;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.profileHeader h1
+{
+    font-size: 1.2em;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.main
+{
+    width: 90%;
+    margin: auto;
+    margin-top: 195px;
+    margin-bottom: 50px;
+}
+
+.profileInfo h2
+{
+    text-transform: uppercase;
+    color: #595959;
+    margin-bottom: 5px;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.profileInfo p
+{
+    color: #a0a0a0;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+}
+
+.offerButtons
+{
+    display: flex;
+    margin-bottom: 18px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+button
+{
+    width: 50%;
+    margin: 0;
+    padding: 5px 0;
+    border: none;
+    font-size: 1em;
+    color: #595959;
+    text-transform: lowercase;
+    background-color: white;
+}
+
+.active
+{
+    background-color: #e94f4c;
+    color: white;
+}
+
+#participating
+{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#recommendations
+{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.offer
+{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    height: 90px;
+    position: relative;
+    margin-bottom: 15px;
+    z-index: -1;
+}
+
+.logo img
+{
+    max-height: 80px;
+    max-width: 80px;
+    margin: 0 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.overlay
+{
+    background: -webkit-linear-gradient(left, #ffce00, #f5a127);
+    opacity: 0.7;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.info
+{
+    margin-left: 100px;
+    padding-top: 8px;
+    padding-right: 10px;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.info h1
+{
+    font-size: 1.1em;
+    color: #595959;
+}
+
+.dates
+{
+    position: absolute;
+    bottom: 8px;
+}
+
+.dates h2
+{
+    font-size: 1em;
+    color: #a0a0a0;
+    font-weight: 200;
+}
+
+.earnings
+{
+    display: flex;
+    color: #595959;
+    font-size: 1em;
+    font-weight: 400;
+    position: absolute;
+    bottom: 35px;
+}
+
+.earnings img
+{
+    height: 15px;
+    margin: 0 5px 0 0;
+}
+
+.recommendedOffers
+{
+    visibility: hidden;
+}
