@@ -9,6 +9,7 @@ class Offer
     private $startDate;
     private $endDate;
     private $coins;
+    private $companyID;
 
     public function getTitle()
     {
@@ -60,6 +61,33 @@ class Offer
         $this->coins = $coins;
     }
 
+    public function getCompanyID()
+    {
+        return $this->companyID;
+    }
+
+    public function setCompanyID($companyID)
+    {
+        $this->companyID = $companyID;
+    }
+
+    public function getOfferData($offerID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM offers WHERE id = :offerID');
+        $statement->bindValue(':offerID', $offerID);
+        $statement->execute();
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        $this->setTitle($res['title']);
+        $this->setDescription($res['description']);
+        $this->setStartDate($res['start_date']);
+        $this->setEndDate($res['end_date']);
+        $this->setCoins($res['coins']);
+        $this->setCompanyID($res['company_id']);
+    }
+
     public function getAllOffers()
     {
         $conn = Db::getInstance();
@@ -80,6 +108,18 @@ class Offer
         return $res;
     }
 
+    public function getParticipatingOffers($userID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM offers_users WHERE user_id = :userID');
+        $statement->bindValue(':userID', $userID);
+        $statement->execute();
+
+        $res = $statement->fetchAll();
+        return $res;
+    }
+
     public function shortenDescription($description)
     {
         if (strlen($description) > 90) {
@@ -88,5 +128,22 @@ class Offer
         } else {
             return $description;
         }
+    }
+
+    public function setOfferData($offerID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM offers WHERE id = :offerID');
+        $statement->bindValue(':offerID', $offerID);
+        $statement->execute();
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        $this->setDescription($res['description']);
+        $this->setCoins($res['coins']);
+        $this->setEndDate($res['end_date']);
+        $this->setStartDate($res['start_date']);
+        $this->setTitle($res['title']);
+        $this->setCompanyID($res['company_id']);
     }
 }
