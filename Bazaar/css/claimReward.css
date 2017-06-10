@@ -1,0 +1,26 @@
+body
+{
+    background-color: black;
+}
+
+img
+{
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 50px;
+}
+
+.scan
+{
+    background-color: #e94f4c;
+    width: 75px;
+    height: 75px;
+    border-radius: 38px;
+    border: 10px solid white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+}
