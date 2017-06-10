@@ -5,13 +5,23 @@ namespace Bazaar\Classes;
 
 class User
 {
+    private $userID;
     private $firstname;
     private $lastname;
     private $email;
     private $password;
-    private $address;
-    private $postalCode;
+    private $avatar;
     private $birthday;
+
+    public function getUserID()
+    {
+        return $this->userID;
+    }
+
+    public function setUserID($userID)
+    {
+        $this->userID = $userID;
+    }
 
     public function getFirstname()
     {
@@ -53,6 +63,16 @@ class User
         $this->password = $password;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
     public function getAddress()
     {
         return $this->address;
@@ -87,10 +107,10 @@ class User
     {
         $conn = Db::getInstance();
 
-        $statementCheck = $conn->prepare("SELECT * FROM users WHERE email = :email;");
-        $statementCheck->bindValue(":email", $this->getEmail());
-        $statementCheck->execute();
-        $row = $statementCheck->fetch(\PDO::FETCH_ASSOC);
+        $statement = $conn->prepare("SELECT * FROM users WHERE email = :email;");
+        $statement->bindValue(":email", $this->getEmail());
+        $statement->execute();
+        $row = $statement->fetch(\PDO::FETCH_ASSOC);
         return $row;
     }
 
@@ -149,6 +169,76 @@ class User
             // email not found
             return false;
         }
+    }
+
+    public function setReward($offerID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM offers_users WHERE user_id = :userID AND offer_id = :offerID");
+        $statement->bindValue(':userID', $this->getUserID());
+        $statement->bindValue(':offerID', $offerID);
+        $statement->execute();
+
+        if ($statement->rowCount() == 1){
+            $statement = $conn->prepare("UPDATE offers_users SET earnings = earnings + 1 WHERE user_id = :userID AND offer_id = :offerID");
+            $statement->bindValue(':userID', $this->getUserID());
+            $statement->bindValue(':offerID', $offerID);
+            $statement->execute();
+            return true;
+        } else {
+            $statement = $conn->prepare("INSERT INTO offers_users (offer_id, user_id, earnings) VALUES (:offerID, :userID, :earnings)");
+            $statement->bindValue(':userID', $this->getUserID());
+            $statement->bindValue(':offerID', $offerID);
+            $statement->bindValue(':earnings', 1);
+            $statement->execute();
+            return true;
+        }
+    }
+
+    public function isParticipating($offerID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM offers_users WHERE user_id = :userID AND offer_id = :offerID");
+        $statement->bindValue(':userID', $this->getUserID());
+        $statement->bindValue(':offerID', $offerID);
+        $statement->execute();
+
+        if ($statement->rowCount() == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getRewards($offerID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare("SELECT * FROM offers_users WHERE user_id = :userID AND offer_id = :offerID");
+        $statement->bindValue(':userID', $this->getUserID());
+        $statement->bindValue(':offerID', $offerID);
+        $statement->execute();
+
+        $row = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $row;
+    }
+
+    public function getUserData($userid)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("SELECT * FROM users WHERE id = :userid");
+        $statement->bindValue(':userid', $userid);
+        $statement->execute();
+        $res = $statement->fetch(\PDO::FETCH_ASSOC);
+
+        $this->setUserID($userid);
+        $this->setEmail($res['email']);
+        $this->setFirstname($res['first_name']);
+        $this->setLastname($res['last_name']);
+        $this->setPassword($res['password']);
+        $this->setAvatar($res['avatar']);
     }
 
 }
