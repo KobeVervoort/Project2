@@ -23,11 +23,12 @@ if(isset($_SESSION['companyID'])){
         $placement = 'aanbiedingenlijst';
         $placementPrice = 10;
     } else {
-        $placement = 'Homepagina + aanbiedingenlijst';
+        $placement = 'Homepagina + <br>aanbiedingenlijst';
         $placementPrice = 30;
     }
 
     $totalPrice = $valuePrice + $placementPrice;
+    $_SESSION['totalPrice'] = $totalPrice;
 
     $documentNumber = time();
     $date = date('d/m/Y', $documentNumber);
@@ -70,40 +71,45 @@ if(isset($_SESSION['companyID'])){
         <?php include_once 'steps.inc.php'?>
 
         <div class="secondStep">
+
             <div class="heading">
                 <p>nr. <?php echo $documentNumber?></p>
-                <p><?php echo $date ?></p>
+                <p id="documentDate"><?php echo $date ?></p>
             </div>
+
+
+            <div class="companyInfo">
+                <p><?php echo $company->getCompanyname()?></p>
+                <p><?php echo $company->getAddress()?></p>
+                <p>2800 Mechelen</p>
+            </div>
+
+            <div class="document">
+                <h1>Offerte</h1>
+                <h2>Aanbieding KVBazaar</h2>
+                <div>
+                    <p class="product">Actie</p>
+                    <p class="price">&euro;<?php echo $valuePrice?></p>
+                </div>
+                <div>
+                    <p class="product"><?php echo $placement?></p>
+                    <p class="price">&euro;<?php echo $placementPrice?></p>
+                </div>
+                <div class="total">
+                    <p class="product">Totaal (incl. BTW)</p>
+                    <p class="price">&euro;<?php echo $totalPrice?></p>
+                </div>
+
+                <p id="dueDate">Te betalen voor <?php echo $dueDate?></p>
+
+            </div>
+
+            <div class="buttons">
+                <a href="place_offer_step1.php" id="change">wijzig</a>
+                <a href="place_offer_step3.php" id="confirm">bevestig</a>
+            </div>
+
         </div>
-
-        <div class="companyInfo">
-            <p><?php echo $company->getCompanyname()?></p>
-            <p><?php echo $company->getAddress()?></p>
-            <p>2800 Mechelen</p>
-        </div>
-
-        <div class="document">
-            <h1>Offerte</h1>
-            <p>aanbieding KVBazaar</p>
-            <div>
-                <p>- actie</p>
-                <p>&euro;<?php echo $valuePrice?></p>
-            </div>
-            <div>
-                <p>- <?php echo $placement?></p>
-                <p>&euro;<?php echo $placementPrice?></p>
-            </div>
-            <div class="total">
-                <p>Totaal</p>
-                <p>&euro;<?php echo $totalPrice?></p>
-            </div>
-
-            <p>Te betalen voor <?php echo $dueDate?></p>
-
-        </div>
-
-        <button>wijzig</button>
-        <button>bevestig</button>
 
     </section>
 
