@@ -31,6 +31,20 @@ nav a img
     margin-top: 5px;
 }
 
+.overviewLink img
+{
+    height: 20px;
+    margin-top: 9px;
+    margin-bottom: 1px;
+}
+
+.editLink img
+{
+    height: 24px;
+    margin-top: 5px;
+    margin-bottom: 1px;
+}
+
 .red
 {
     color: #ed4a3e;
