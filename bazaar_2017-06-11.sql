@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.35)
 # Database: bazaar
-# Generation Time: 2017-05-23 19:59:02 +0000
+# Generation Time: 2017-06-11 16:36:32 +0000
 # ************************************************************
 
 
@@ -88,6 +88,32 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table offers_users
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `offers_users`;
+
+CREATE TABLE `offers_users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `offer_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `earnings` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `offers_users` WRITE;
+/*!40000 ALTER TABLE `offers_users` DISABLE KEYS */;
+
+INSERT INTO `offers_users` (`id`, `offer_id`, `user_id`, `earnings`)
+VALUES
+	(4,5,3,2),
+	(5,2,3,1),
+	(6,3,3,1);
+
+/*!40000 ALTER TABLE `offers_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table users
 # ------------------------------------------------------------
 
@@ -99,16 +125,17 @@ CREATE TABLE `users` (
   `last_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `password` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `avatar` varchar(200) COLLATE utf8_unicode_ci DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`)
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `avatar`)
 VALUES
-	(3,'Kobe','Vervoort','kobevervoort@gmail.com','$2y$12$hfIKNtpInzk3H9.Dk.z3muSdnPZmEELHsMI45EgstPM6k8RRvxkiK'),
-	(18,'Test','Testers','test@test.com','$2y$12$4HxvbTB2zmkwCS5hCL0YseNVmgvJIaXOUdu4MFO2HKKubKO.nn.Gq');
+	(3,'Kobe','Vervoort','kobevervoort@gmail.com','$2y$12$hfIKNtpInzk3H9.Dk.z3muSdnPZmEELHsMI45EgstPM6k8RRvxkiK',''),
+	(18,'Test','Testers','test@test.com','$2y$12$4HxvbTB2zmkwCS5hCL0YseNVmgvJIaXOUdu4MFO2HKKubKO.nn.Gq','');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
