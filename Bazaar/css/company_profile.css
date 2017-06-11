@@ -1,0 +1,213 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #f7f3f1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profileHeader
+{
+    background: -webkit-linear-gradient(bottom left, #e94f4c, #8e181b);
+    height: 175px;
+    padding-top: 18px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.profilePic
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+}
+
+.profileHeader h1
+{
+    font-size: 1.2em;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.main
+{
+    width: 90%;
+    margin: auto;
+    margin-top: 195px;
+    margin-bottom: 50px;
+}
+
+.profileInfo h2
+{
+    text-transform: uppercase;
+    color: #595959;
+    margin-bottom: 5px;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.profileInfo p
+{
+    color: #a0a0a0;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+    margin-left:10px;
+}
+
+.profileInfo h3
+{
+    text-transform: uppercase;
+    color: #595959;
+    font-size: 0.9em;
+    font-weight: 200;
+    line-height: 1.2em;
+    margin-left:10px;
+    padding-top:5px;
+}
+
+.offerButtons
+{
+    display: flex;
+    margin-bottom: 18px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+button
+{
+    width: 50%;
+    margin: 0;
+    padding: 5px 0;
+    border: none;
+    font-size: 1em;
+    color: #595959;
+    text-transform: lowercase;
+    background-color: white;
+}
+
+.active
+{
+    background-color: #e94f4c;
+    color: white;
+}
+
+#information
+{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#payments
+{
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.contact
+{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    height: 140px;
+    position: relative;
+    margin-bottom: 15px;
+    z-index: -1;
+}
+
+.bedrijfsgegevens
+{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    height: 210px;
+    position: relative;
+    margin-bottom: 50px;
+    z-index: -1;
+}
+
+.payment
+{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    height: 90px;
+    position: relative;
+    margin-bottom: 15px;
+    z-index: -1;
+}
+
+.overlay
+{
+    background: -webkit-linear-gradient(left, #ffce00, #f5a127);
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.overlay p {
+    display: inline-block;
+    margin-top:5px;
+    margin-left:5px;
+    margin-right:5px;
+    font-size: 0.9em;
+    font-weight: 200;
+}
+
+#date {
+    float:right;
+}
+
+#nr {
+    float:left;
+}
+
+.paymentInfo
+{
+    padding-top:30px;
+}
+
+.paymentInfo span
+{
+    color: #595959;
+    font-size: 1em;
+    font-weight: 200;
+}
+
+.paymentInfo p
+{
+    color: #595959;
+    font-size: 0.9em;
+    font-weight: 210;
+    margin-left:5px;
+    margin-bottom:5px;
+}
+
+#statusOpen
+{
+    color:red;
+}
+
+#statusPayed
+{
+    color:green;
+}
+
+.payments
+{
+    display: none;
+}

@@ -1,5 +1,15 @@
+<?php
 
-<!doctype html>
+use Bazaar\Classes\Company;
+use Bazaar\Classes\Offer;
+use Bazaar\Classes\User;
+
+include_once 'start.php';
+
+session_start();
+$page = "profiel";
+
+?><!doctype html>
 <html lang="en">
 <head>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -19,7 +29,7 @@
     <title>beheren</title>
 </head>
 <body>
-<?php include_once 'nav.inc.php'?>
+<?php include_once 'nav.inc.php';?>
 
 <section class="profileHeader">
 
