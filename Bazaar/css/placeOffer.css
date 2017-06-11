@@ -14,10 +14,13 @@ body
     width: 90%;
     margin: auto;
     margin-top: 25px;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
 }
 
-.firstStep
+.firstStep,
+.secondStep,
+.thirdStep,
+.fourthStep
 {
     background-color: white;
     width: 100%;
@@ -35,10 +38,17 @@ h2
     text-transform: uppercase;
 }
 
+.errorMessage
+{
+    color: #e94f4c;
+    margin-top: 10px;
+    text-transform: lowercase;
+    font-weight: 200;
+}
+
 .date
 {
     display: flex;
-    margin-bottom: 25px;
     width: 100%;
 }
 
@@ -64,9 +74,22 @@ h2
     width: 90%;
 }
 
-.value
+label[for=price]
 {
-    margin-bottom: 15px;
+    display: block;
+    margin-top: 25px;
+}
+
+.value .errorMessage
+{
+    position: relative;
+    top: -15px;
+}
+
+label[for=participationsNumber]
+{
+    display: block;
+    margin-top: 10px;
 }
 
 .value span
@@ -102,11 +125,6 @@ h2
     z-index: 1;
 }
 
-.participations
-{
-    margin-bottom: 30px;
-}
-
 .participations span
 {
     display: block;
@@ -129,9 +147,10 @@ h2
     border: none;
 }
 
-h2
+.placement h2
 {
     margin-bottom: 5px;
+    margin-top: 25px;
 }
 
 .placement label
@@ -160,20 +179,20 @@ h2
     width            : 1em;
     height           : 1em;
     margin           : 0.25em 0.5em 0.7em 0.25em;
-    border           : 0.0625em solid #ed4a3e;
+    border           : 0.0625em solid #e94f4c;
     border-radius    : 0.25em;
     vertical-align: bottom;
 }
 
 .placement input[type=radio   ]:not(old):checked + label > span
 {
-    background-color: #ed4a3e;
+    background-color: #e94f4c;
 }
 
 button
 {
     width: 100%;
-    background-color: #ed4a3e;
+    background-color: #e94f4c;
     height: 40px;
     border: none;
     border-radius: 25px;
@@ -183,6 +202,217 @@ button
     text-transform: uppercase;
     margin-top: 25px;
 }
+
+/* Second Step */
+.secondStep p
+{
+    font-size: 1em;
+    font-weight: 200;
+}
+
+.heading
+{
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.heading p
+{
+    width: 100%;
+}
+
+#documentDate
+{
+    text-align: right;
+}
+
+.companyInfo
+{
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    margin-bottom: 25px;
+}
+
+h1
+{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.document h2
+{
+    color: #a0a0a0;
+}
+
+.document div
+{
+    display: flex;
+    margin-bottom: 8px;
+}
+
+
+.product
+{
+    flex-grow: 8;
+}
+
+.price
+{
+    flex-basis: 50px;
+}
+
+.total
+{
+    border-top: 1px solid #a0a0a0;
+    padding-top: 25px;
+    margin-top: 17px;
+}
+
+#dueDate
+{
+    font-size: 0.8rem;
+    margin-top: 25px;
+}
+
+.buttons
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.secondStep a
+{
+    display: block;
+    width: 100%;
+    background-color: #e94f4c;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    height: 40px;
+    padding-top: 12px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#change
+{
+    margin-right: 15px;
+}
+
+.thirdStep input
+{
+    border: none;
+    border-bottom: 1px solid #a0a0a0;
+    width: 100%;
+    padding: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+}
+
+.thirdStep textarea
+{
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    border: none;
+    border-bottom: 1px solid #a0a0a0;
+    resize: none;
+}
+
+label[for=description]
+{
+    display: block;
+    margin-top: 25px;
+}
+
+.fourthStep h2
+{
+    margin-bottom: 5px;
+}
+
+.fourthStep p
+{
+    font-size: 0.8rem;
+    font-weight: 200;
+    margin-bottom: 15px;
+}
+
+.dateAndPrice
+{
+    display: flex;
+}
+
+.dateAndPrice > div
+{
+    width: 100%;
+}
+
+#startDateBlock,
+#endDateBlock
+{
+    display: flex;
+}
+
+#startDateBlock p,
+#endDateBlock p
+{
+    margin-left: 5px;
+}
+
+#valueBlock
+{
+    display: flex;
+}
+
+#valueBlock p
+{
+    margin-left: 5px;
+}
+
+#placementBlock
+{
+    display: flex;
+}
+
+#placementBlock p
+{
+    margin-left: 5px;
+}
+
+.fourthStepTitle
+{
+    text-align: left;
+    color: #484848;
+    font-size: 1rem;
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+.fourthStep #placement,
+.fourthStep #totalPrice
+{
+    margin-bottom: 0;
+}
+
+.fourthStep a
+{
+    display: block;
+    width: 100%;
+    background-color: #e94f4c;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    height: 40px;
+    padding-top: 12px;
+    text-align: center;
+    border-radius: 20px;
+    margin-top: 25px;
+}
+
 
 
 
