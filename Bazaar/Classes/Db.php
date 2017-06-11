@@ -12,7 +12,7 @@ abstract class Db
             return self::$conn;
         } else {
             // if there isn't a connection, add it
-            self::$conn = new \PDO("mysql:host=localhost; dbname=bazaar", "root", "root");
+            self::$conn = new \PDO("mysql:host=localhost; dbname=bazaar", "root", "");
             return self::$conn;
         }
     }

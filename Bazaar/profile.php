@@ -58,7 +58,7 @@ if(isset($_SESSION['userID'])) {
         <?php else:?>
 
             <img class="profilePic" src="<?php echo $user->getAvatar();?>" alt="<?php echo $user->getFirstname() . " " . $user->getLastname();?>'s avatar">
-            
+
         <?php endif;?>
 
         <h1><?php echo $user->getFirstname() . " " . $user->getLastname();?></h1>
