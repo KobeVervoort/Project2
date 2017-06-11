@@ -11,7 +11,8 @@ body
     font-family: 'Montserrat', sans-serif;
 }
 
-.offers
+.offers,
+.controls
 {
     display: flex;
     flex-wrap: wrap;
@@ -19,7 +20,8 @@ body
     justify-content: space-between;
 }
 
-.offer
+.offer,
+.control
 {
     width: 48%;
     background-color: white;
@@ -47,7 +49,8 @@ body
     border-top-right-radius: 8px;
 }
 
-.companyLogo
+.companyLogo,
+.controlIcon
 {
     height: 50px;
     display: block;
@@ -57,10 +60,36 @@ body
     margin-bottom: 25px;
 }
 
+#editControl .controlIcon,
+#overviewControl .controlIcon,
+#profileControl .controlIcon
+{
+    height: 45px;
+}
+
 h1
 {
     font-size: 1.1em;
     margin: 0 5px;
+}
+
+.controlName
+{
+    position: relative;
+    top: 13px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+#editControl h1
+{
+    top: 18px;
+}
+
+#overviewControl h1,
+#profileControl h1
+{
+    top: 28px;
 }
 
 .price
