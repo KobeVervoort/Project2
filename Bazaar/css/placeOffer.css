@@ -1,0 +1,213 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #f7f3f1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main
+{
+    width: 90%;
+    margin: auto;
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.firstStep
+{
+    background-color: white;
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    margin-top: 15px;
+}
+
+label,
+h2
+{
+    font-weight: 600;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.date
+{
+    display: flex;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.date div
+{
+    width: 100%;
+}
+
+.date input
+{
+    -webkit-appearance: none;
+    border: none;
+    padding: 5px 0;
+    border-bottom: 1px solid #a0a0a0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8em;
+    width: 100%;
+    font-weight: 200;
+}
+
+#startDate
+{
+    width: 90%;
+}
+
+.value
+{
+    margin-bottom: 15px;
+}
+
+.value span
+{
+    display: block;
+    border-bottom: 1px solid #a0a0a0;
+    padding: 5px 0;
+    font-weight: 200;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+.value input
+{
+    font-weight: 200;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8em;
+    width: 2.5em;
+    position: relative;
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+}
+
+#euro
+{
+    position: relative;
+    top: -24px;
+    width: 100%;
+    text-align: end;
+    font-weight: 200;
+    color: #a0a0a0;
+    z-index: 1;
+}
+
+.participations
+{
+    margin-bottom: 30px;
+}
+
+.participations span
+{
+    display: block;
+    border-bottom: 1px solid #a0a0a0;
+    padding: 5px 0;
+    font-weight: 200;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+.participations input
+{
+    font-weight: 200;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8em;
+    width: 2.5em;
+    position: relative;
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+}
+
+h2
+{
+    margin-bottom: 5px;
+}
+
+.placement label
+{
+    font-weight: 200;
+    text-transform: lowercase;
+}
+
+.placement input[type=radio   ]:not(old){
+    width     : 2em;
+    margin    : 0;
+    padding   : 0;
+    font-size : 1em;
+    opacity   : 0;
+}
+
+.placement input[type=radio   ]:not(old) + label
+{
+    display      : inline-block;
+    margin-left  : -3em;
+    line-height  : 2.5em;
+}
+
+.placement input[type=radio   ]:not(old) + label > span{
+    display          : inline-block;
+    width            : 1em;
+    height           : 1em;
+    margin           : 0.25em 0.5em 0.7em 0.25em;
+    border           : 0.0625em solid #ed4a3e;
+    border-radius    : 0.25em;
+    vertical-align: bottom;
+}
+
+.placement input[type=radio   ]:not(old):checked + label > span
+{
+    background-color: #ed4a3e;
+}
+
+button
+{
+    width: 100%;
+    background-color: #ed4a3e;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    color: white;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
