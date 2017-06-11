@@ -9,6 +9,8 @@ class Offer
     private $startDate;
     private $endDate;
     private $coins;
+    private $totalCoins;
+    private $placement;
     private $companyID;
 
     public function getTitle()
@@ -59,6 +61,26 @@ class Offer
     public function setCoins($coins)
     {
         $this->coins = $coins;
+    }
+
+    public function getTotalCoins()
+    {
+        return $this->totalCoins;
+    }
+
+    public function setTotalCoins($totalCoins)
+    {
+        $this->totalCoins = $totalCoins;
+    }
+
+    public function getPlacement()
+    {
+        return $this->placement;
+    }
+
+    public function setPlacement($placement)
+    {
+        $this->placement = $placement;
     }
 
     public function getCompanyID()
@@ -145,5 +167,22 @@ class Offer
         $this->setStartDate($res['start_date']);
         $this->setTitle($res['title']);
         $this->setCompanyID($res['company_id']);
+    }
+
+    public function uploadOffer()
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('INSERT INTO offers (title, description, start_date, end_date, coins, promoted, company_id, total) VALUES (:title, :description, :startDate, :endDate, :coins, :promoted, :company_id, :totalCoins)');
+        $statement->bindValue(':title', $this->getTitle());
+        $statement->bindValue(':description', $this->getDescription());
+        $statement->bindValue(':startDate', $this->getStartDate());
+        $statement->bindValue(':endDate', $this->getEndDate());
+        $statement->bindValue(':coins', $this->getCoins());
+        $statement->bindValue(':promoted', $this->getPlacement());
+        $statement->bindValue(':company_id', $this->getCompanyID());
+        $statement->bindValue(':totalCoins', $this->getTotalCoins());
+
+        $statement->execute();
     }
 }
