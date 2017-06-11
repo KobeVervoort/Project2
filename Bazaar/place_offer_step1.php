@@ -14,33 +14,46 @@ if(isset($_SESSION['companyID'])){
 
     $dateError = $valueError = $participationsError = '';
 
+    $startDate = $endDate = $value = $participations = $placement = '';
+
+    if(!empty($_SESSION['startDate'])) {
+        $startDate = $_SESSION['startDate'];
+        $endDate = $_SESSION['endDate'];
+        $value = $_SESSION['value'];
+        $participations = $_SESSION['participations'];
+        $placement = $_SESSION['placement'];
+    }
+
     if(!empty($_POST)){
-        $startDate = strtotime($_POST['startDate']);
-        $endDate = strtotime($_POST['endDate']);
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+
+        $startDateConverted = strtotime($startDate);
+        $endDateConverted = strtotime($endDate);
         $value = $_POST['value'];
         $participations = $_POST['participations'];
         $placement = $_POST['place'];
 
-        if($startDate == '' || $endDate == ''){
-            $dateError = 'Je kan dit niet leeg laten';
-        } else if ($startDate >= $endDate) {
+        if($startDateConverted == '' || $endDateConverted == ''){
+            $dateError = 'Je kan dit niet leeglaten';
+        } else if ($startDateConverted >= $endDateConverted) {
             $dateError = 'einddatum met later zijn dan startdatum';
         } else {
-            $startDate = date('Y-m-d', $startDate);
-            $endDate = date('Y-m-d', $endDate);
+            $startDateConverted = date('Y-m-d', $startDateConverted);
+            $endDateConverted = date('Y-m-d', $endDateConverted);
         }
 
         if($value == ''){
-            $valueError = 'Je kan dit niet leeg laten';
+            $valueError = 'Je kan dit niet leeglaten';
         }
 
         if($participations == ''){
-            $participationsError = 'Je kan dit niet leeg laten';
+            $participationsError = 'Je kan dit niet leeglaten';
         }
 
         if($dateError == '' && $valueError == '' && $participationsError == ''){
-            $_SESSION['startDate'] = $startDate;
-            $_SESSION['endDate'] = $endDate;
+            $_SESSION['startDate'] = $startDateConverted;
+            $_SESSION['endDate'] = $endDateConverted;
             $_SESSION['value'] = $value;
             $_SESSION['participations'] = $participations;
             $_SESSION['placement'] = $placement;
@@ -90,41 +103,48 @@ if(isset($_SESSION['companyID'])){
                     <div>
                         <label for="startDate">van</label>
                         <br>
-                        <input type="date" id="startDate" class="dateInput" name="startDate">
+                        <input type="date" id="startDate" class="dateInput" name="startDate" value="<?php echo $startDate?>">
                     </div>
 
                     <div>
                         <label for="endDate">tot</label>
                         <br>
-                        <input type="date" id="endDate" class="dateInput" name="endDate">
+                        <input type="date" id="endDate" class="dateInput" name="endDate" value="<?php echo $endDate?>">
                     </div>
 
                 </div>
 
+                <p class="errorMessage"><?php echo $dateError?></p>
+
                 <div class="value">
 
                     <label for="price">waarde</label>
-                    <span><input type="number" id="price" name="value" min="1" max="9999">coins</span>
-                    <p id="euro">&euro;</p>
+                    <span><input type="number" id="price" name="value" min="1" max="9999" value="<?php echo $value?>">coins</span>
+                    <p id="euro">&euro;<?php echo $value * 1.5?></p>
+
+                    <p class="errorMessage"><?php echo $valueError?></p>
 
                 </div>
 
                 <div class="participations">
 
                     <label for="participationsNumber">maximum deelnames per supporter</label>
-                    <span><input type="number" id="participationsNumber" name="participations" min="1" max="15">deelnames</span>
+                    <span><input type="number" id="participationsNumber" name="participations" min="1" max="15" value="<?php echo $participations?>">deelnames</span>
+
+                    <p class="errorMessage"><?php echo $participationsError?></p>
 
                 </div>
 
                 <div class="placement">
 
                     <h2>plaatsing</h2>
+
                     <div>
-                        <input type="radio" name="place" value="list" id="list" checked>
+                        <input type="radio" name="place" value="list" id="list" <?php if($placement == '' || $placement == 'list'){echo 'checked';};?>>
                         <label for="list"><span><span></span></span>Aanbiedingenlijst (&euro;10)</label>
                     </div>
                     <div>
-                        <input type="radio" name="place" value="listHome" id="listHome">
+                        <input type="radio" name="place" value="listHome" id="listHome" <?php if($placement == 'listHome'){echo 'checked';};?>>
                         <label for="listHome"><span><span></span></span>Homepagina + aanbiedingenlijst (&euro;30)</label>
                     </div>
 
@@ -134,8 +154,21 @@ if(isset($_SESSION['companyID'])){
             </form>
         </div>
 
-
     </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            var price = $('#price');
+            var euro = $('#euro');
+
+            price.on('keyup', function (e) {
+                euro.html('&euro;' + (price.val()*1.5));
+            })
+        });
+
+    </script>
 
 </body>
 </html>
