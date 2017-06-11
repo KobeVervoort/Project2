@@ -111,7 +111,7 @@
 
                     <button class="more"></button>
 
-                    <button class="extend">Hernieuw</button>
+                    <button class="extend">Plaats</button>
 
                 </div>
             </li>
