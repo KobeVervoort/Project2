@@ -16,7 +16,7 @@ if(isset($_SESSION['userID'])){
     $offerCompany = new Company();
 
 } else if (isset($_SESSION['companyID'])){
-
+    header('Location: Bazaar/company.php');
 } else {
     header('Location: Bazaar/register.php');
 }
