@@ -75,7 +75,8 @@ if(isset($_SESSION['userID'])){
 
         </div>
 
-        <button class="allOffers">bekijk alle aanbiedingen</button>
+        <a class="allOffers" href="Bazaar/offers.php">Bekijk alle aanbiedingen</a>
+
     </section>
 
     <div class="superFans">

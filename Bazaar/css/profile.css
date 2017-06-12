@@ -54,7 +54,7 @@ body
     width: 90%;
     margin: auto;
     margin-top: 195px;
-    margin-bottom: 50px;
+    margin-bottom: 75px;
 }
 
 .profileInfo h2
@@ -197,4 +197,28 @@ a
 .recommendedOffers
 {
     visibility: hidden;
+}
+
+.recommendedOffers h1
+{
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    color: #bcbcbc;
+    margin-bottom: 15px;
+}
+
+.logout
+{
+    display: block;
+    width: 100%;
+    background-color: #e94f4c;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    height: 40px;
+    padding-top: 12px;
+    text-align: center;
+    border-radius: 20px;
 }

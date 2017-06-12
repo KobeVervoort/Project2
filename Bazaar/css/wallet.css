@@ -1,0 +1,179 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: #f7f3f1;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header
+{
+    background: -webkit-linear-gradient(bottom left, #e94f4c, #8e181b);
+    height: 175px;
+    padding-top: 40px;
+    width: 100%;
+    top: 0;
+}
+
+.header > div
+{
+    display: flex;
+}
+
+.data
+{
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px 0;
+}
+
+.data h3
+{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.data p
+{
+    font-weight: 200;
+    font-size: 0.7em;
+    text-transform: uppercase;
+}
+
+.data img
+{
+    height: 15px;
+    margin-left: 3px;
+    margin-top: 2px;
+}
+
+.data div
+{
+    display: flex;
+    width: 60px;
+    margin: auto;
+}
+
+.data.two
+{
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.header h1
+{
+    font-size: 1.2em;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.main
+{
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 75px;
+}
+
+.payment
+{
+    display: flex;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #a0a0a0;
+    margin-top: 15px;
+}
+
+.payment img
+{
+    height: 15px;
+    margin-left: 5px;
+}
+
+.paymentInfo
+{
+    flex-grow: 5;
+}
+
+.paymentInfo p
+{
+    font-size: 0.8em;
+    font-weight: 200;
+    color: #a0a0a0;
+    margin-top: 15px;
+
+}
+
+.exchange
+{
+    text-align: right;
+    flex-basis: 100px;
+}
+
+.exchange > div
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.date
+{
+    font-size: 0.8em;
+    font-weight: 200;
+    color: #a0a0a0;
+    margin-top: 15px;
+}
+
+.exchange > div > div
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.exchange span
+{
+    color: green;
+}
+
+.exchange .minus
+{
+    color: #e94f4c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

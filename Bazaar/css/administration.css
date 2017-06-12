@@ -9,7 +9,8 @@ body
     font-family: 'Montserrat', sans-serif;
 }
 
-.profileHeader {
+.profileHeader
+{
     background: -webkit-linear-gradient(bottom left, #e94f4c, #8e181b);
     opacity: 0.8;
     height: 175px;
@@ -26,8 +27,25 @@ body
     border-radius: 8px;
     margin: auto;
     box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+.defaultProfile
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.1);
+    background-color: white;
+    color: #bcbcbc;
+    font-size: 2.7em;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 25px;
+}
 
 .profileHeader h1
 {
@@ -36,7 +54,7 @@ body
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
-    margin-top:18px;
+    margin-top: 18px;
 }
 
 .main
@@ -104,9 +122,9 @@ button
 
 .logo img
 {
-    max-height: 120px;
-    max-width: 80px;
-    margin: 0 8px;
+    max-height: 100px;
+    max-width: 100px;
+    margin: 0 15px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -116,7 +134,7 @@ button
 {
     background: -webkit-linear-gradient(left, #ffce00, #f5a127);
     opacity: 0.7;
-    width: 90px;
+    width: 120px;
     height: 120px;
     position: absolute;
     top: 0;
@@ -139,9 +157,10 @@ button
 }
 .info
 {
-    margin-left: 100px;
+    margin-left: 130px;
     padding-top: 8px;
     padding-right: 10px;
+    font-size: 0.9rem;
 }
 
 a
@@ -158,7 +177,7 @@ a
 .dates
 {
     position: absolute;
-    bottom:30px;
+    bottom: 40px;
 }
 
 .dates h2
@@ -183,7 +202,8 @@ a
     right: 0;
 }
 
-.extend {
+.extend
+{
     height: 20px;
     background-color: #e94f4c;
     border-radius: 25px;
@@ -191,14 +211,14 @@ a
     width: 40%;
     color: white;
     font-size: 0.8em;
-    margin-top:55px;
-    position: absolute;
-    left: 60%;
-    transform: translateX(-50%);
+    position: relative;
+    left: 130px;
+    top: 67px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
+    padding: 0;
 }
 
 .finishedOffers
@@ -210,3 +230,36 @@ a
 {
     display:none;
 }
+
+.activeOffers h3,
+.finishedOffers h3
+{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    color: #bcbcbc;
+    z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,7 +20,8 @@ body
 .firstStep,
 .secondStep,
 .thirdStep,
-.fourthStep
+.fourthStep,
+.finalStep
 {
     background-color: white;
     width: 100%;
@@ -398,7 +399,8 @@ label[for=description]
     margin-bottom: 0;
 }
 
-.fourthStep a
+.fourthStep a,
+.finalStep a
 {
     display: block;
     width: 100%;
@@ -413,7 +415,10 @@ label[for=description]
     margin-top: 25px;
 }
 
-
+.finalStep h2
+{
+    line-height: 1rem;
+}
 
 
 

@@ -28,6 +28,8 @@ if(isset($_SESSION['companyID'])) {
 
     $offer->uploadOffer();
 
+    $_SESSION['companyID'] = $_SESSION['startDate'] = $_SESSION['endDate'] = $_SESSION['title'] = $_SESSION['description'] = $_SESSION['participations'] = $_SESSION['value'] = $_SESSION['placement'] = '';
+
 }  else if (isset($_SESSION['userID'])){
     header('Location: index.php');
 } else {
@@ -54,6 +56,23 @@ if(isset($_SESSION['companyID'])) {
     <title>Plaats uw aanbieding</title>
 </head>
 <body>
+
     <?php include_once 'nav.inc.php'?>
+
+    <section class="main">
+
+        <div class="finalStep">
+
+            <h2>Proficiat, je aanbieding werd succesvol geplaatst en verschijnt vanaf <?php echo date('d-m-Y', $offer->getStartDate())?> in de bazaar!</h2>
+
+            <a href="place_offer_step1.php">Plaats nog een aanbieding</a>
+            <a href="administration.php">Bekijk jouw aanbiedingen</a>
+
+        </div>
+
+
+
+    </section>
+
 </body>
 </html>

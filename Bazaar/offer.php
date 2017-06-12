@@ -31,8 +31,10 @@ if(isset($_SESSION['userID'])){
         $coins -= $awardedCoins;
     }
 
+} else if (isset($_SESSION['companyID'])){
+    header('Location: Bazaar/company.php');
 } else {
-
+    header('Location: Bazaar/register.php');
 }
 
 ?><!doctype html>
@@ -77,11 +79,11 @@ if(isset($_SESSION['userID'])){
         <div class="dates">
             <div>
                 <h2>Van</h2>
-                <p class="startDate"><?php echo $offer->getStartDate();?></p>
+                <p class="startDate"><?php echo date('d-m-Y',$offer->getStartDate());?></p>
             </div>
             <div>
                 <h2>Tot</h2>
-                <p><?php echo $offer->getEndDate();?></p>
+                <p><?php echo date('d-m-Y', $offer->getEndDate());?></p>
             </div>
         </div>
 

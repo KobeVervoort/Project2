@@ -138,6 +138,9 @@ h1
     transform: translateX(-50%);
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 16px;
 }
 
 .superFansBackground

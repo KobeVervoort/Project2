@@ -142,6 +142,17 @@ class Offer
         return $res;
     }
 
+    public function getMyOffers($companyID)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT * FROM offers WHERE company_id = :companyID');
+        $statement->bindValue(':companyID', $companyID);
+        $statement->execute();
+
+        $res = $statement->fetchAll();
+        return $res;
+    }
     public function shortenDescription($description)
     {
         if (strlen($description) > 90) {

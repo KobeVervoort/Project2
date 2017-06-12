@@ -24,6 +24,10 @@ if(isset($_SESSION['userID'])) {
     } else {
         $participatingOffers = $offer->getParticipatingOffers($user->getUserID());
     }
+} else if (isset($_SESSION['companyID'])){
+    header('Location: Bazaar/company.php');
+} else {
+    header('Location: Bazaar/register.php');
 }
 ?><!doctype html>
 <html lang="en">
@@ -124,7 +128,7 @@ if(isset($_SESSION['userID'])) {
                                 </div>
 
                                 <div class="dates">
-                                    <h2>actief t.e.m.: <span><?php echo $offer->getEndDate();?></span></h2>
+                                    <h2>tot <span><?php echo date('m-d-Y', $offer->getEndDate());?></span></h2>
                                 </div>
 
                                 <button class="more"></button>
@@ -141,9 +145,11 @@ if(isset($_SESSION['userID'])) {
 
         <ul class="recommendedOffers">
 
-            <h1>test</h1>
+            <h1>Geen aanbevelingen beschikbaar</h1>
 
         </ul>
+
+        <a class="logout" href="logout.php">log uit</a>
 
     </section>
 
@@ -162,8 +168,8 @@ if(isset($_SESSION['userID'])) {
                 participatingButton.addClass('active');
                 recommendationsButton.removeClass('active');
 
-                participatingOffers.css({visibility: 'visible'});
-                recommendedOffers.css({visibility: 'hidden'});
+                participatingOffers.css({display: 'block'});
+                recommendedOffers.css({display: 'none'});
             });
 
             recommendationsButton.on('click', function (e) {
@@ -172,8 +178,8 @@ if(isset($_SESSION['userID'])) {
                 recommendationsButton.addClass('active');
                 participatingButton.removeClass('active');
 
-                recommendedOffers.css({visibility: 'visible'});
-                participatingOffers.css({visibility: 'hidden'});
+                recommendedOffers.css({display: 'block'});
+                participatingOffers.css({display: 'none'});
             });
         });
 

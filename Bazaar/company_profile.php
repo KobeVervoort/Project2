@@ -7,7 +7,18 @@ use Bazaar\Classes\User;
 include_once 'start.php';
 
 session_start();
-$page = "profiel";
+$page = "companyProfile";
+
+if(isset($_SESSION['companyID'])) {
+
+    $company = new Company();
+    $company->getCompanyData($_SESSION['companyID']);
+
+} else if (isset($_SESSION['userID'])){
+    header('Location: index.php');
+} else {
+    header('Location: Bazaar/register.php');
+}
 
 ?><!doctype html>
 <html lang="en">
@@ -33,13 +44,19 @@ $page = "profiel";
 
 <section class="profileHeader">
 
+    <?php if($company->getLogo() == null):?>
+
         <div class="defaultProfile">
-            <p class="initials"></p>
+            <p class="initials"><?php echo substr($company->getCompanyname(), 0, 2);?></p>
         </div>
 
-        <img class="profilePic">
+    <?php else:?>
 
-    <h1>Frituur Frutties</h1>
+        <img class="profilePic" src="<?php echo BASE_URL . 'Bazaar/uploads/' . $company->getLogo();?>" alt="<?php echo $company->getCompanyname();?>'s logo">
+
+    <?php endif;?>
+
+    <h1><?php echo $company->getCompanyname();?></h1>
 
 </section>
 
@@ -53,27 +70,32 @@ $page = "profiel";
     </div>
 
     <div class="profileInfo">
+
         <h2>Contact</h2>
+
         <div class="contact">
-        <h3>Naam</h3>
-        <p>Pascal Hendrickx</p>
-        <h3>Email</h3>
-        <p>pascal@frutties.be</p>
-        <h3>Tel</h3>
-        <p><a href="#">toevoegen</a></p>
+            <h3>Naam</h3>
+            <p><?php echo $company->getCompanyname()?></p>
+
+            <h3>Email</h3>
+            <p><?php echo $company->getEmail()?></p>
+
+            <h3>Tel</h3>
+            <p><a href="#">toevoegen</a></p>
         </div>
 
         <h2>Bedrijfsgegevens</h2>
+
         <div class="bedrijfsgegevens">
-        <h3>Adres</h3>
-        <p>Zandpoortvest 38 <br> 2800 Mechelen</p>
-        <h3>Openingsuren</h3>
-        <p><a href="#">toevoegen</a></p>
-        <h3>Email</h3>
-        <p><a href="#">toevoegen</a></p>
-        <h3>Tel</h3>
-        <p><a href="#">toevoegen</a></p>
+
+            <h3>Adres</h3>
+            <p><?php echo $company->getAddress()?> <br> 2800 <?php echo $company->getCity()?></p>
+            <h3>Openingsuren</h3>
+            <p><a href="#">toevoegen</a></p>
+
         </div>
+
+        <a class="logout" href="logout.php">log uit</a>
 
     </div>
 
@@ -116,7 +138,6 @@ $page = "profiel";
 
     </ul>
 
-
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -147,6 +168,10 @@ $page = "profiel";
             payments.css({display: 'block'});
             information.css({display: 'none'});
         });
+
+        $('body').on('click', function (e) {
+            console.log($(event.target).prop('tagName'));
+        })
     });
 
 </script>

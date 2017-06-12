@@ -2,9 +2,11 @@
 namespace Bazaar\Classes;
 
 
-class Company extends User
+class Company
 {
     private $companyname;
+    private $email;
+    private $password;
     private $address;
     private $city;
     private $logo;
@@ -17,6 +19,26 @@ class Company extends User
     public function setCompanyname($companyname)
     {
         $this->companyname = $companyname;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
     }
 
     public function getAddress()

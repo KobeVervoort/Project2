@@ -2,12 +2,27 @@
 
 use Bazaar\Classes\Company;
 use Bazaar\Classes\Offer;
-use Bazaar\Classes\User;
+use \Bazaar\Classes\User;
 
 include_once 'start.php';
 
 session_start();
-$page = "profiel";
+
+$page = "administration";
+
+if(isset($_SESSION['companyID'])) {
+
+    $company = new Company();
+    $company->getCompanyData($_SESSION['companyID']);
+
+    $offer = new Offer();
+    $activeOffers = $offer->getMyOffers($_SESSION['companyID']);
+
+} else if (isset($_SESSION['userID'])){
+    header('Location: index.php');
+} else {
+    header('Location: Bazaar/register.php');
+}
 
 ?><!doctype html>
 <html lang="en">
@@ -33,9 +48,19 @@ $page = "profiel";
 
 <section class="profileHeader">
 
-    <img class="profilePic" src="">
+    <?php if($company->getLogo() == null):?>
 
-    <h1>Frituur Frutties</h1>
+        <div class="defaultProfile">
+            <p class="initials"><?php echo substr($company->getCompanyname(), 0, 2);?></p>
+        </div>
+
+    <?php else:?>
+
+        <img class="profilePic" src="<?php echo BASE_URL . 'Bazaar/uploads/' . $company->getLogo();?>" alt="<?php echo $company->getCompanyname();?>'s logo">
+
+    <?php endif;?>
+
+    <h1><?php echo $company->getCompanyname();?></h1>
 
 </section>
 
@@ -45,61 +70,105 @@ $page = "profiel";
 
         <button id="active" class="active">lopend</button>
         <button id="finished" >afgelopen</button>
-        <button id="saved">opgeslagen</button>
 
     </div>
 
 
     <ul class="activeOffers">
 
-                <a>
-                    <li class="offer">
+        <h3>je hebt nog geen deelnames</h3>
 
-                        <div class="logo">
-                            <div class="overlay"></div>
+        <?php if ($activeOffers == null):?>
+
+        <?php else:?>
+
+            <?php foreach($activeOffers as $key => $o):?>
+
+                <?php if($o['end_date'] > time()):?>
+
+                <li class="offer">
+
+                    <div class="logo">
+                        <div class="overlay"></div>
+
+                        <?php if($company->getLogo() != null):?>
+
+                        <img src="<?php echo BASE_URL.'Bazaar/uploads/'.$company->getLogo()?>"
+                             alt="<?php echo $company->getCompanyname();?> logo"
+                             class="companyLogo">
+
+                        <?php endif;?>
+
+                    </div>
+
+                    <div class="info">
+                        <h1><?php echo $o['title'];?></h1>
+
+                        <div class="dates">
+                            <p class="startDate">van <?php echo date('d-m-Y', $o['start_date'])?></p>
+                            <p class="endDate">tot <?php echo date('d-m-Y', $o['end_date'])?></p>
                         </div>
 
-                        <div class="info">
-                            <h1>Frietjes actie bij Frituur Frutties</h1>
+                    </div>
 
-                            <div class="dates">
-                                <h2>van 04/05/2017</span></h2>
-                                <h2>tot 26/05/2017</span></h2>
-                            </div>
+                    <button class="extend">verleng</button>
 
-                            <button class="more"></button>
+                </li>
 
-                            <button class="extend">Verleng</button>
+                <?php endif; ?>
 
-                        </div>
-                    </li>
-                </a>
+            <?php endforeach;?>
+
+        <?php endif;?>
+
     </ul>
 
     <ul class="finishedOffers">
 
-        <a>
-            <li class="offer">
+        <h3>je hebt nog geen deelnames</h3>
 
-                <div class="logo">
-                    <div class="overlayFinished"></div>
-                </div>
+        <?php if ($activeOffers == null):?>
 
-                <div class="info">
-                    <h1>Bitterballen actie bij Frituur Frutties</h1>
+        <?php else:?>
 
-                    <div class="dates">
-                        <h2>van 01/03/2017</span></h2>
-                        <h2>tot 01/04/2017</span></h2>
+            <?php foreach($activeOffers as $key => $o):?>
+
+                <?php if($o['end_date'] < time()):?>
+
+                <li class="offer">
+
+                    <div class="logo">
+                        <div class="overlay"></div>
+
+                        <?php if($company->getLogo() != null):?>
+
+                        <img src="<?php echo BASE_URL.'Bazaar/uploads/'.$company->getLogo()?>"
+                             alt="<?php echo $company->getCompanyname();?> logo"
+                             class="companyLogo">
+
+                        <?endif;?>
+
                     </div>
 
-                    <button class="more"></button>
+                    <div class="info">
+                        <h1><?php echo $o['title'];?></h1>
 
-                    <button class="extend">Hernieuw</button>
+                        <div class="dates">
+                            <p class="startDate">van <?php echo date('d-m-Y', $o['start_date'])?></p>
+                            <p class="endDate">tot <?php echo date('d-m-Y', $o['end_date'])?></p>
+                        </div>
 
-                </div>
-            </li>
-        </a>
+                    </div>
+
+                    <button class="extend">verleng</button>
+
+                </li>
+
+                <?php endif; ?>
+
+            <?php endforeach;?>
+
+        <?php endif;?>
 
     </ul>
 

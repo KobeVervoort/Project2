@@ -5,14 +5,18 @@ use Bazaar\Classes\Offer;
 
 include_once 'start.php';
 
-$page = 'offer';
+$page = 'overview';
 session_start();
 
-if(isset($_SESSION['userID'])){
+if(isset($_SESSION['companyID'])){
     $offer = new Offer();
     $offers = $offer->getAllOffers();
 
     $offerCompany = new Company();
+} else if (isset($_SESSION['userID'])){
+    header('Location: index.php');
+} else {
+    header('Location: Bazaar/register.php');
 }
 
 ?><!doctype html>
@@ -48,17 +52,25 @@ if(isset($_SESSION['userID'])){
                     <div class="front">
                         <div class="logo">
                             <div class="overlay"></div>
-                            <img src="<?php $offerCompany->getCompanyData($o['company_id']); echo BASE_URL.'Bazaar/uploads/'.$offerCompany->getLogo()?>"
+
+                            <?php $offerCompany->getCompanyData($o['company_id'])?>
+
+                            <?php if($offerCompany->getLogo() != null):?>
+
+                            <img src="<?php echo BASE_URL.'Bazaar/uploads/'.$offerCompany->getLogo()?>"
                                  alt="<?php echo $offerCompany->getCompanyname();?> logo"
                                  class="companyLogo">
+
+                            <?php endif;?>
+
                         </div>
 
                         <div class="info">
                             <h1><?php echo $o['title'];?></h1>
 
                             <div class="dates">
-                                <h2>van <span><?php echo $o['start_date'];?></span></h2>
-                                <h2>van <span><?php echo $o['end_date'];?></span></h2>
+                                <h2>van <span><?php echo date('d-m-Y', $o['start_date']);?></span></h2>
+                                <h2>van <span><?php echo date('d-m-Y', $o['end_date']);?></span></h2>
                             </div>
 
                             <div class="price">
@@ -94,9 +106,9 @@ if(isset($_SESSION['userID'])){
                             </div>
                             <div class="dates">
                                 <h3>Van</h3>
-                                <p><?php echo $o['start_date'];?></p>
+                                <p><?php echo date('d-m-Y', $o['start_date']);?></p>
                                 <h3>Tot</h3>
-                                <p><?php echo $o['end_date'];?></p>
+                                <p><?php echo date('d-m-Y', $o['end_date']);?></p>
                             </div>
                         </div>
                     </div>
